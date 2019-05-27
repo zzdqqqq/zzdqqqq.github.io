@@ -1,1 +1,559 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        color: black;
+        background: white;
+        width: 70%;
+        margin-left: 200px;
+    }
+    #code {
+        color: darkslateblue;
+        background: lightgray;
+    }
+    .collapsible {
+        background-color: #777;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .active, .collapsible:hover {
+        background-color: #555;
+    }
+
+    .content {
+        padding: 0 18px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        background-color: #f1f1f1;
+    }
+    .collapsible:after {
+        content: '\02795'; /* Unicode character for "plus" sign (+) */
+        font-size: 13px;
+        color: white;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .active:after {
+        content: "\2796"; /* Unicode character for "minus" sign (-) */
+        color: white;
+    }
+</style>
+</head>
+<body>
+<nav>
+    <h2>Navigation:</h2>
+    <a href="#hashing" target="_self">Hashing</a>
+</nav>
+    <div>
+        <button class="collapsible">Analysis Algorithms</button>
+        <div class="content">
+        <h3>Analysis Algorithms</h3>
+    </div>
+    <hr>
+    <div>
+        <button class="collapsible">Primes</button>
+        <div class="content">
+        <h3>Primes</h3>
+        <ul>
+            <li>Eratosthenes's sieve</li>
+            <pre id="code">
+                
+    Eratosthenes(n) {
+        for i from 0 to n:
+            isPrime[i] = true;
+        end
+        for i from 4 to n step 2:
+            isPrime[i] = false;
+        end
+        for i from 3 to n step 2
+            if isPrime[i]:
+                for j from i*i to n step 2*i:
+                    isPrime[j] = false;
+                end
+            end
+        end
+    }
+            </pre>
+        </ul>
+    </div>
+    <hr>
+    <div>
+        <button class="collapsible">Sorting</button>
+        <div class="content">
+        <h3>Sorting</h3>
+        <ul>
+            <li>Heap Sort: <a href="https://en.wikipedia.org/wiki/Heapsort#Example" target="_blank">wikipedia</a> </li>
+        </ul>
+    </div>
+    <hr>
+    <div>
+        <button class="collapsible">Shuffling Searching</button>
+        <div class="content">
+        <h3>ShufflingSearching</h3>
+        <ul>
+            <li>Binary Search</li>
+            <pre id="code">
+
+--------------recursive--------------
+    binarySearch(a[], target, l, r) {
+        i = l; j = r;
+        if (i > j) 
+            return;
+        guess = (i+j)/2;
+        if (a[guess] > target)
+            binarySearch(a[], target, l, guess-1);
+        elseif (a[guess] < target)
+            binarySearch(a[], target, guess+1, r);
+        else
+            return guess;
+    }
+-------------------------------------
+            </pre>
+        </ul>
+    </div>
+    <hr>
+    <div>
+        <button class="collapsible">List, Queues, Stacks</button>
+        <div class="content">
+        <h3>Lists, Queues, Stacks</h3>
+    </div>
+    <hr>
+    <div>
+        <button class="collapsible">Back Tracking</button>
+        <div class="content">
+        <h3>BackTracking(???)</h3>
+    </div>
+    <hr>
+    <div id="Trie">
+        <button class="collapsible">Trie</button>
+        <div class="content">
+        <h3><a href="https://docs.google.com/document/d/1cVoE0HEIn2rq6O3fSA4E4_P4OJn1WoFetHucsnjhf3c/edit" target="_blank">Tree and Trie</a></h3>
+            <ul>
+                <li><a href="https://docs.google.com/document/d/1J-EYTIJIT6BBN6Z3z6Wt3Rm5EZAT30iJ4CmSybTEcKI/edit" target="_blank">Review</a></li>
+                <li>Inorder, Preorder, Postorder</li>
+                <pre id="code">
+
+    inorder(Node n) {
+        if n == nullptr)
+            return;
+        inorder(n.left);
+        print(n.data);
+        inorder(n.right);
+    }
+                </pre>
+                <li>Trie</li>
+                <pre id="code">
+
+    class Trie {
+    private:
+        class Node {
+        public:
+            Node* next[26];
+            bool isWord;
+        };
+        Node* root;
+        void deleteNode(Node* p) {
+            for (int i = 0; i < 26; i++) {
+                if (p->next[i] != nullptr) 
+                    deleteNode(p->next[i]);
+            }
+            delete p;
+        }
+    public:
+        Trie() {}
+        ~Trie() {
+            for (int i = 0; i < 26; i++) {
+                if (root.next[i] == nullptr)
+                    deleteNode(root.next[i]);
+            }
+        }
+        void insert(string word) {
+            Node* temp = root;
+            for (int i = 0; i < length(word); i++) {
+                index = word - 'a';
+                if (temp->next[index] == nullptr) 
+                    temp->next[index] = new Node();
+                temp = temp->next[index];
+                }
+            temp.isWord = true;
+        }
+        bool containPrefix(string word) {
+            Node* temp = root;
+            for (int i = 0; i < length(word); i++) {
+                index = word[i] - 'a';
+                if (temp->next[index] == nullptr)
+                    return false;
+                temp = temp->next[index];
+            }
+            return true;
+        }
+        bool containWord(string word) {
+            Node* temp = root;
+            for (int i = 0; i < length(word); i++) {
+                index = word[i] - 'a';
+                if (temp->next[index] == nullptr)
+                    return false;
+                temp = temp->next[index];
+            }
+            return temp->isWord;
+        }
+    };
+                </pre>
+            </div>
+            </ul>
+    </div>
+    <hr>
+    <div id="hashing">
+        <button class="collapsible">Hashing</button>
+        <div class="content">
+        <h3 id="hashing"><a href="https://docs.google.com/document/d/1rRmX3SSOI29lwHkYs0eN6a0q2KZRNay2Cq4euitphps/edit" target="_blank">Hashing</a></h3>
+            <ul>
+                <li>No Review</li>
+                <li>Linear Probing:</li>
+                <pre id="code">
+-------------------------------------
+    linearProbing.add(key) {
+        if (used * 2 >= capacity) 
+            grow();
+        pos = hash(key);
+        while (table[pos] != EMPTY) {
+            pos = (pos + 1) mod table.length;
+        }
+        table[pos] = key;
+        used++;
+    }
+-------------------------------------
+    linearProbing.find(key) {
+        pos = hash(key);
+        while (table[pos] != EMPTY) {
+            if (table[pos] == key)
+                return true;
+            else {
+                pos++;
+                if (pos >= table.length)
+                    pos = 0;
+            }
+        }
+        return false;
+    }
+-------------------------------------
+                </pre>
+                <li>Linear Chaining:</li>
+                <pre id="code">
+-------------------------------------
+    linearChaining.add(key) {
+        pos = hash(key);
+        p = table[pos].head;
+        while(p != nullptr) {
+            if (p.key == key) {
+                p.key = key;
+                return;
+            }
+        }
+        table[pos].addstart(key);
+    }
+-------------------------------------
+    linearChaining.find(key) {
+        pos = hash(key);
+        p = table[pos].head;
+        while (p != nullptr) {
+            if (p.key == key) 
+                return true;
+            p = p->next;
+        }
+        return false;
+    }
+-------------------------------------
+                </pre>
+            </ul>
+    </div>
+    <hr>
+    <div class="Matrix" id="Matrix">
+        <button class="collapsible">Matrix</button>
+        <div class="content">
+        <h3><a href="https://docs.google.com/document/d/1F1LOnhmM-fUAu1AomV5NBd6gwdOdiMKjlc1_UdxbCJE/edit" target="_blank" title="Matrix">Matrix</a></h3>
+            <ul >
+                <li><a href="https://docs.google.com/document/d/1yghR6YG-rNCGSdIhAxsYe6Ze3AZh4kIkHU70qh7EAQA/edit" target="_blank" title="quiz">Review</a></li>
+                    <ul>
+                        <li>Partial Pivoting</li>
+                        <li>Gaussian Elimination</li>
+                    </ul>
+                    <pre id="code">
+--------------pivoting--------------
+    partialPivoting(A, B, i) {
+        biggest = A(i, i);
+        biggestPos = i;
+
+        for (int j = 0; j < A.rows; j++) {
+            if (A(j, i) > biggest) {
+                biggest = A(j, i);
+                biggestPos = j;
+            }
+        }
+        for (int j = i; j < A.cols; j++) {
+            swap(A(biggestPos, j), A(i, j));
+        }
+        swap(B[biggestPos], B[i]);
+    }
+
+--------------Gaussian---------------
+    gaussianElimination(A, B) {
+        for (int i = 0; i < A.rows.; i++) {
+            partialPivoting(A, B, i);
+            s = 
+        }
+    }
+                    </pre>
+                <li>Addition</li>
+                <li><a href="https://docs.google.com/document/d/1F1LOnhmM-fUAu1AomV5NBd6gwdOdiMKjlc1_UdxbCJE/edit#h.ryloctqtinxu" target="_blank" title="quiz">Multiplication</a></li>
+                <pre id="code">
+
+    matrixMulti(A, B) {
+        for (inti = 0; i < A.rows; i++){
+            for (int j = 0; j < A.cols; j++) {
+                sum = 0;
+                for (int k = 0; k < A.cols; k++) 
+                    sum += A(i, k) * B(k, j);
+                result(i, j) = sum;
+            }
+        }
+        return result;
+    }
+                 </pre>
+                <li><a href="https://docs.google.com/document/d/1F1LOnhmM-fUAu1AomV5NBd6gwdOdiMKjlc1_UdxbCJE/edit" target="_blank">Solve Systems of Equations</a></li>
+                <li><d><a href="https://docs.google.com/document/d/1yghR6YG-rNCGSdIhAxsYe6Ze3AZh4kIkHU70qh7EAQA/edit" target="_blank">Tri Diagnal</a></d></li>
+                    <dd>Initialization: 3n-2</dd>
+                    <dd>Addition Complexity: 3n-2</dd>
+                    <dd>Mulitply Complexity: n</dd>
+
+            </ul>
+    </div>
+    <hr>
+    <div class="stringAlgorithm" id="stringAlgorithm">
+        <button class="collapsible">String Algorithm</button>
+        <div class="content">
+        <h3><a href="https://docs.google.com/document/d/18fFvFPX6Bjl0p8BhwZ549_5m7OnyhH7pMOqqzoG5tp8/edit#h.mc4f1fyxt6qh" target="_blank" target="_blank">String Algorithm</a></h3>
+        <ul>
+            <li><a href="https://docs.google.com/document/d/1x8YXjvvqQG91DTEButJ_OAg51Ng8oVOX2KiNtIo5TFc/edit" target="_blank" title="quiz">Review</a></li>
+            <ul>
+                <li>Boyer-Moore algorithm</li>
+            </ul>
+                <pre id="code">
+-------------------------------------
+    boyerMoore(target, search) {
+        for (int i = 0; i < 256; i++) 
+            offset[i] = length(target);
+        for (int i = 0; i < length(target); i++) 
+            offset[target[i]] = length(target) - i - 1;
+        for (int i = length(target)-1; i < length(search);) {
+            jump = offset[search[i]];
+            if (jump == 0) {
+                //may be find it
+                for (int j = i - length(target) + 1, k = 0; j < i; j++, k++) {
+                    if (target[k] == search[j])
+                        return true;
+                    else { i+= length(target)}
+            } else
+                i += jump;
+        }
+    }
+-------------------------------------
+                </pre>
+                <li>Finite State Machine</li>
+            <li><d>Longest Common Subsequence(LCS)</d></li>
+                <dd>Just find the same element in two sequence</dd>
+                <pre id="code">
+-------------------------------------
+    LCS(x[0...m], y[0...n]) {
+        c = array(m, n);
+        for (int i = 0; i < m; i++) 
+            c[i, 0] = 0;
+        for (int i = 0; i < n; i++)
+            c[0, j] = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (x[i] == y[j])
+                    c[i, j] = c[i-1, j-1] + 1;
+                else
+                    c[i, j] = max(c[i, j-1], c[i-1, j]);
+            }
+        }
+        return c[m, n]
+    }
+-------------------------------------
+                </pre>
+        </ul>
+    </div>
+    <hr>
+    <div class="graphTheory">
+        <button class="collapsible">Graph Theory</button>
+        <div class="content">
+        <h3><a href="https://docs.google.com/document/d/1QRQ5hBbBiKXkq0xePaM74Dbq7uui8nGUhUarYntk3wY/edit#" target="_blank" title="quiz">Graph Theory</a></h3>
+        <ul>
+            <li>Definition</li>
+                <ul>
+                    <li>Connected: if from any vertex, you can reach all other vertices.</li>
+                    <li>The maximum number of edges E for V vertices? V(V-1)/2 = O(v^2)</li>
+                </ul>
+            <li>Matrix Representation of Graph</li>
+                <ul>
+                    <li>Space Complexity: O(E)=O(V^2)</li>
+                    <li>Is vertex k adjacent to vertex m? O(1)</li>
+                    <li>Find all vertices adjacent to k? O(V)</li>
+                </ul>
+                <pre id="code">
+-------------------------------------
+    int isAdjancent(from, to) {
+        if (from > to)
+            return isAdjancent(to, from);
+        return matrix[from][to];
+    }
+-------------------------------------
+                </pre>
+            <li>Depth First Search(DFS) & Breadth First Search(BFS)</li>
+                <ul>
+                    <li>Complexity: O(V^2)===>Matrix Representation; Omega(1)</li>
+                    <li>Algorithm:</li>
+                </ul>
+                    <pre id="code">
+--------------recursive--------------
+    DFS(v) {
+        visited = {false,...,false};
+        DFS2(v, visited);
+    }
+    DFS2(v, visited) {
+        visited[v2] = true;
+        print v;
+        if adjacent(v) is EMPTY:
+            return;
+        for v2 in adjacent(v) {
+            if NOT visited[v2]
+                DFS2(v2, visited);
+        }
+    }
+--------------iteratively------------
+    DFS(v) {
+        visited = [false,...,false];
+        stack <- EMPTY;
+        stack.push(v);
+        visit[v] = true;
+        while (NOT stack.isEmpty()) {
+            v = stack.pop();
+            print v;
+            for (v2 in adjacent(v)) {
+                if (visited[v2] == false) {
+                    stack.push(v2);
+                    visited[v2] = true;
+                }
+            }
+        }
+    }
+-------------------------------------
+                        </pre>
+        </ul>
+    </div>
+    <hr>
+    <div id="graphAlgorithm">
+        <button class="collapsible">Graph Algorithm</button>
+        <div class="content">
+        <h3><a href="https://docs.google.com/document/d/1nTrsSUnURWzM5EL0LCBM4Iy2pumfIrHG6pYWy6numwk/edit" target="_blank">Graph Algorithms</a> </h3>
+        <ul>
+            <li>Next Class</li>
+            <li>Bellman-Ford</li>
+            <pre id="code">
+-------------------------------------
+    bellmanFord(vertices, edges) {
+        for i in vertices:
+            cost[i] = inf;
+            predecessor[i] = null;
+        for v1, v2 with (weight w) in edges:
+            if (cost[v2] + w) < cost[v1]:
+                cost[v1] = cost[v2] + w;
+                predecessor[v1] = v2;
+        return cost, predecessor;
+    }
+    // predecessor is the path? 
+-------------------------------------
+            </pre>
+            <li>Floyd-Warshall</li>
+            <pre id="code">
+-------------------------------------
+    for edge(u, v) in edges:
+        distance[u][v] = weight[u][v];
+    end
+    for v in vertices:
+        distance[v][v] = 0;
+    end
+    for k from 1 to |V|:
+        for i from 1 to |V|:
+            for j from 1 to |V|:
+                if distance[i][j] > distance[i][k] + distance[k][j]:
+                    distance[i][j] = distance[i][k] + distance[k][j];
+                end 
+            end 
+        end 
+    end 
+-------------------------------------
+            </pre>
+            <li>Bellman-Ford and Floyd-Warshall with path tracking</li>
+            <pre id="code">
+-------------------------------------
+    for each edges(u, v):
+        distance[u][v] = weight[u][v];
+        next[u][v] = v;
+    for each vertices v:
+        distance[v][v] = 0;
+        next[v][v] = v;
+
+    for k from 1 to |V|:
+        for i from 1 to |V|:
+            for j from 1 to |V|:
+                if distance[i][j] > distance[i][k] + distance[k][j]:
+                    distance[i][j] = distance[i][k] + distance[k][j];
+                    next[i][j] = next[i][k];
+-------------------------------------
+            </pre>
+            <li>Prim</li>
+            <pre id="code">
+-------------------------------------
+No Code
+-------------------------------------
+            </pre>
+            <li>Kruskal (find the minimum spanning tree)</li>
+            <pre id="code">
+    No code, just find the cheapest connection, then after finding all vertices, 
+    find the cheapest connection between different groups.</pre>
+        </ul>
+    </div>
+<hr>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight){
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        } 
+        });
+    }
+</script>
+
+</body>
+</html>
