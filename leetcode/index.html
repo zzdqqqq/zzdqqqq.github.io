@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <meta name="author" content="zidong zhang">
+    <meta name="keyword" content="leetcode">
+</head>
+<body>
+    <div id="two sum">
+        <h3>Two Sum</h3>
+        <pre id="pcode">
+Python:
+def twoSum(list, target):
+    dict = {}
+    for i in range(len(list)):
+        complement = target - list[i];
+        if complement not in dict:
+            dict[complement] = i
+        else:
+            return [dic[complement], i]
+        </pre>
+    </div>
+</body>
+</html>
