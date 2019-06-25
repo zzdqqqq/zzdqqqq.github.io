@@ -109,7 +109,7 @@
             l = 0
             r = len(height) - 1
             hl, hr = 0, 0
-            while l < r:
+            while l < r:    
                 hl, hr = height[l], height[r]
                 temp = min(hl, hr) * (r - l)
                 biggest = max(temp, biggest)
