@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="my Website">
+<meta name="keywords" content="blog, resume">
+<meta name="author" content="zidong zhang, 张子洞">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>About Me</title>
+
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- PRE LOADER -->
+
+<div class="preloader">
+    <div class="sk-spinner sk-spinner-wordpress">
+        <span class="sk-inner-circle"></span>
+    </div>
+</div>
+
+<!-- Navigation section  -->
+
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">Zidong</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html">Home</a></li>
+                <li class="active"><a href="about.html">About Me</a></li>
+                <!-- <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li> -->
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<!-- Home Section -->
+
+<section id="home" class="main-single-post parallax-section">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <h1>LeetCode</h1>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Blog Single Post Section -->
+
+<section id="blog-single-post">
+    <div class="container">
+            <div class="row">
+
+                <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    <div class="blog-single-post-thumb">
+                        
+
+                        <div class="blog-post-title">
+                                <h2>11. Container With Most Water</a></h2>
+                        </div>
+
+                        <div class="blog-post-format">
+                                <span><a href="#"><img src="images/favicon.jpg" class="img-responsive img-circle">Zidong Zhang</a></span>
+                                <span><i class="fa fa-date"></i> Jun 22 2019</span>
+                        </div>
+
+                        <div class="blog-post-des">
+                                <pre id = "code">
+    '''
+    class Solution:
+        def maxArea(self, height) -> int:
+            biggest = 0
+            for i in range(len(height)):
+                for j in range(i+1, len(height)):
+                    temp = (j - i) * (height[i] if height[i] < height[j] else height[j])
+                    biggest = temp if temp > biggest else biggest
+            return biggest
+    '''
+    
+    class Solution:
+        def maxArea(self, height) -> int:
+            length = len(height)
+            biggest = 0
+            l = 0
+            r = len(height) - 1
+            hl, hr = 0, 0
+            while l < r:
+                hl, hr = height[l], height[r]
+                temp = min(hl, hr) * (r - l)
+                biggest = max(temp, biggest)
+                if hl <= hr:
+                    l += 1
+                else:
+                    r -= 1
+            return biggest
+        
+        
+                                         
+                                </pre>
+                                <!-- <div class="blog-post-image">
+                                    <img src="" class="img-responsive" alt="Blog Image 3">
+                                </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+
+<!-- Footer Section -->
+
+<footer>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-5 col-md-offset-1 col-sm-6">
+                <h3>My Blog</h3>
+                <p>World Peace</p>
+                <div class="footer-copyright">
+                    <p>Copyright &copy; 2019 Zidong</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-1 col-sm-6">
+                <h3>Talk to Me</h3>
+                <p><i class="fa fa-globe"></i> Address: Jersey City, NJ, US</p>
+                <p><i class="fa fa-phone"></i> Phone: +1 551-263-4588</p>
+                <p><i class="fa fa-save"></i> Email: zzhan20@stevens.edu</p>
+            </div>
+
+            <div class="clearfix col-md-12 col-sm-12">
+                <hr>
+            </div>
+
+            <div class="col-md-12 col-sm-12">
+                <ul class="social-icon">
+                    <li><a href="https://www.facebook.com/zidong.zhang.319" class="fa fa-facebook"></a></li>
+                    <li><a href="https://twitter.com/zidong_zhang" class="fa fa-twitter"></a></li>
+                    <li><a href="#" class="fa fa-google-plus"></a></li>
+                    <li><a href="https://www.linkedin.com/in/zidong-zhang-472143168/" class="fa fa-linkedin"></a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</footer>
+
+<!-- Back top -->
+<a href="#home" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+<!-- SCRIPTS -->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/particles.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/jquery.parallax.js"></script>
+<script src="js/smoothscroll.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/smooth-scroll.polyfills.min.js"></script>
+<script>var scroll = new SmoothScroll('a[href*="#"]');</script>
+
+</body>
+</html>
+
